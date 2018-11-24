@@ -1,0 +1,35 @@
+//USING STATEMENTS.
+using System;
+using System.Text;
+using System.Threading.Tasks;
+using System.Linq;
+
+using Discord;
+using Discord.Commands;
+using Discord.WebSocket;
+
+//Credits. Pretty Simple.
+
+namespace Unadmin
+{
+    public class UnAdmin : ModuleBase<SocketCommandContext>
+    {
+        [Command("Unadmin"), Alias("unadmin"), Summary("Unadmin A User.")]
+        public async Task Saaaaaajuaaaaaaaa2aaaaaaaaaaaaaaaaaste(SocketGuildUser userName)
+        {
+            //Gets Our Current User As A SocketGuildUser.
+            var user = Context.User as SocketGuildUser;
+            //ROLE TO REMOVE. (Unadmin)
+            var role1 = Context.Guild.Roles.FirstOrDefault(x => x.Name == "Administrator");
+
+            //CHECKS THAT THE USER WHO RAN THE COMMAND CAN MANAGE ROLES
+            if (user.GuildPermissions.ManageRoles)
+            {
+                //REMOVES ROLE
+                await userName.RemoveRoleAsync(role1);
+                //SENDS A MESSAGE.
+                await Context.Channel.SendMessageAsync(":white_check_mark: User **Un-Assigned** Admin.");
+            }
+        }
+    }
+}
