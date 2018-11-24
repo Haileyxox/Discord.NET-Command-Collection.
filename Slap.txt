@@ -1,0 +1,26 @@
+//USING STATEMENTS
+using System;
+using System.Text;
+using System.Threading.Tasks;
+using System.Linq;
+
+using Discord;
+using Discord.Commands;
+using Discord.WebSocket;
+
+//Credits. Pretty Simple.
+
+namespace Slap
+{
+    public class Slap : ModuleBase<SocketCommandContext>
+    {
+        [Command("Slap"), Alias("slap"), Summary("Punch A User.")]
+        public async Task Saaaaaajuaaaaaaaa2aaaaaaaaaaaaaaaaaste(SocketGuildUser userName)
+        {
+            //Sends A Message With A Slap Gif. FUN COMMAND. SIMPLE.
+            await Context.Channel.SendMessageAsync("https://media.giphy.com/media/xXRDuvEcMA2JO/giphy.gif" + Context.User.Mention + "Slapped " + userName.Mention + "!");
+        }
+
+        
+    }
+}
