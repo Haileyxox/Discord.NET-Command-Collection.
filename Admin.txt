@@ -1,0 +1,41 @@
+//USING STATEMENTS
+using System;
+using System.Text;
+using System.Threading.Tasks;
+using System.Linq;
+
+using Discord;
+using Discord.Commands;
+using Discord.WebSocket;
+
+//Credits. Pretty Simple.
+
+namespace Admin
+{
+    public class Admin : ModuleBase<SocketCommandContext>
+    {
+        [Command("Admin"), Alias("admin"), Summary("Punch A User.")]
+        public async Task Saaaaaajuaaaaaaaa2aaaaaaaaaaaaaaaaaste(SocketGuildUser userName)
+        {
+            //Gets Our Current User As A SocketGuildUser.
+            var user = Context.User as SocketGuildUser;
+            //ROLE TO GIVE
+            var role = (user as IGuildUser).Guild.Roles.FirstOrDefault(x => x.Name == "Administrator");
+            //ROLE NEEDED TO RUN COMMAND.
+            var admin = (user as IGuildUser).Guild.Roles.FirstOrDefault(x => x.Name == "Administrator");
+
+        
+            if (!userName.Roles.Contains(admin))
+            {
+                if (user.GuildPermissions.ManageRoles)
+                {
+                    //ADDS ROLE
+                    await userName.AddRoleAsync(role);
+                    //SENDS MESSAGE,
+                    await Context.Channel.SendMessageAsync(":white_check_mark: User **Assigned** Admin.");
+                }
+
+            }
+        }
+    }
+}
